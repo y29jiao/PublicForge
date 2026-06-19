@@ -1,0 +1,71 @@
+# Global settings — safe for the team to tune.
+# Keys are in English (system language). Values that appear in articles are Chinese,
+# but these are configuration numbers/identifiers, so they stay in English/numbers.
+
+# Our one-line direction / theme (MVP stand-in for "our own posting style"). The offline
+# runner can override it with --direction; the Band agents read it from here as static context.
+direction: 面向考生与家长的高考志愿与专业解读，突出本校优势
+
+num_candidates: 5         # how many topic candidates Topic Strategy generates
+rewrite_cap: 2            # max rewrites per loop (A and B) before handing off to a human
+score_threshold: 3.5      # min weighted top_score to pass Editorial. PLACEHOLDER — tune after first runs.
+
+# "Currently hot" topics used by the trend_fit dimension.
+# NOT hand-filled per run — interfaces/hot_topic_provider.py produces them by algorithm.
+# The list below is only the SEED the MVP provider returns (based on currently known hot
+# topics, e.g. from the reference demo). Post-MVP the provider swaps to a live WebSearch /
+# search-trend API behind the same interface — no other code changes, same downstream field.
+hot_topic_seed:
+  - 高考志愿填报
+  - 集成电路/芯片专业
+  - 高考出分与志愿填报时间窗
+  - 毕业季
+
+# Cross-framework assignment.
+# Strategy: keep the spine on one framework; isolate the SECOND framework to one simple,
+# single-shot agent (compliance review) to minimize integration risk.
+frameworks:
+  # band-sdk has NO "OpenAI Agents SDK" adapter. Its GPT-capable adapters are pydantic_ai,
+  # langgraph, crewai, parlant, codex. We use pydantic-ai for the spine (closest analog:
+  # modern, OpenAI-native agent framework) and langgraph for the 2nd framework.
+  spine: pydantic_ai             # analysis, topic_strategy, editorial, drafting, brand_review, final_editor, orchestrator
+  brand_review: pydantic_ai
+  compliance_review: langgraph   # <-- the SECOND framework (must differ from spine). langgraph (or crewai/parlant).
+
+# Model assignment. Keys (OPENAI_API_KEY / ANTHROPIC_API_KEY) live in .env, NOT here.
+# This block only names which model each step uses, so swapping a model never touches code.
+# All-GPT route: every agent runs a GPT model. (drafting may be switched to Claude later
+# without changing anything else — just edit the line below.)
+models:
+  # Generators / extractors — the base GPT (fast, cheaper).
+  default: gpt-4.1               # analysis, topic_strategy
+  drafting: gpt-4.1              # long-form Chinese writing; switch to claude-* here if desired
+  # Judges / evaluators — a STRONGER, DIFFERENT model than the generators, on purpose:
+  #   (1) independence — version gap vs the gpt-4.1 generators (less self-preference bias);
+  #   (2) stronger reasoning = better, more consistent scoring / judgement.
+  # Use the full GPT-5.x reasoning tier, NOT a mini/nano variant. If "gpt-5.3" is not in your
+  # account's model list, swap to the available full GPT-5.x id. Edit this one line.
+  judge: gpt-4.1                 # editorial_scoring, brand_review, compliance_review, final_editor
+                                 # TEMP: downgraded from gpt-5.2 to test the through-Band 卡顿
+                                 # (reasoning latency vs the 180s step timeout). Restore gpt-5.2 after.
+  # NOTE on judge model (learned the hard way):
+  #  - gpt-5.4-mini does NOT work as a tool-using Band agent: after calling the handoff
+  #    tool it never emits the final text pydantic-ai expects, so the run aborts
+  #    ("Exceeded maximum output retries") and nothing is delivered. Avoid it here.
+  #  - gpt-5.2 works with the handoff tool (a reasoning judge, stronger than the gpt-4.1
+  #    generators). It can be slow / occasionally stall — mitigated by the orchestrator's
+  #    per-step timeout+retry.
+  # The code is model-aware: reasoning models (gpt-5.x) drop `temperature`; reasoning_effort
+  # is only applied on no-tool paths (tool-using Band judges fall back to the model default).
+
+# Reasoning effort used ONLY where a reasoning model runs WITHOUT function tools (e.g. the
+# offline path). Tool-using Band judges can't combine tools + reasoning_effort, so they use
+# the model default. one of: minimal | low | medium | high.
+reasoning_effort: medium
+
+# Temperatures. Low temp where the orchestrator reads the output for routing (must be
+# reproducible); higher temp only where we want creative variety.
+temperatures:
+  scoring: 0.2                   # editorial_scoring, brand_review, compliance_review, final_editor — stable, reproducible
+  creative: 0.7                  # topic_strategy, drafting — needs variety
+  analysis: 0.2                  # analysis — faithful extraction, not invention

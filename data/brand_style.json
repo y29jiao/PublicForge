@@ -1,0 +1,77 @@
+{
+  "style_spec": "文风需兼具权威性与亲和力，表达严谨、温暖，突出理性分析与人文关怀。用词规范、正式，适度穿插诗意表达或激励性短句，避免网络流行语与口语化。句式多为中长句，结构紧凑，偶有排比、感叹句或简短口号，极少使用表情符号。文章结构常以引人入胜的开头、详实分段的主体、总结或号召性结尾组成。标题多采用悬念式、数字式、邀请式或直接点题，突出事件、成果或情感关怀。严禁低俗、煽情、夸张、娱乐化表达及未经证实的信息。",
+  "traits": {
+    "tone": "权威、理性、温暖、亲和。既有学术严谨，又不失人文关怀，常以鼓励、激励、关心读者的语气出现。",
+    "vocabulary": "用词规范、正式，偏好学术、专业术语（如“机制”“模型”“创新”“育人”等），常用“我们”“你”“清华”等指代，偶尔穿插诗意或激励性短句。避免网络流行语、俚语、口语化表达。",
+    "sentence": "以中长句为主，结构紧凑，逻辑清晰，常用排比、递进、感叹句。偶有简短口号式句子，极少使用表情符号或特殊标点。",
+    "structure": "开头多用引人关注的事实、提问或祝福语吸引读者，主体分段详述背景、过程、成果或体验，结尾常有总结、号召或互动引导。整体条理清晰，层次分明。",
+    "title_patterns": [
+      "悬念式（如“到底谁在操控你的睡眠？”）",
+      "数字式（如“清华团队首次发现！人类胚胎发育停滞两大原因”）",
+      "邀请式（如“清华等你，今秋赴约！”）",
+      "直接点题（如“开展五个专项行动，清华这样办实事、解难题！”）"
+    ],
+    "taboos": [
+      "低俗、煽情、夸张、娱乐化表达",
+      "网络流行语、俚语、口语化",
+      "未经证实或不严谨的信息",
+      "过度使用表情符号、特殊标点",
+      "贬低他人或负面情绪渲染"
+    ]
+  },
+  "brand_account": "清华大学",
+  "username": "gh_362a117272d3",
+  "source_count": 10,
+  "sources": [
+    {
+      "title": "清华团队首次发现！人类胚胎发育停滞两大原因",
+      "url": "http://mp.weixin.qq.com/s?__biz=MzA4OTIyMzgxMw==&mid=2659410157&idx=1&sn=007aca3ce9ebe9f901b8c52650a7f7c4",
+      "read_num": 100001
+    },
+    {
+      "title": "本周日，清华校园开放日！",
+      "url": "http://mp.weixin.qq.com/s?__biz=MzA4OTIyMzgxMw==&mid=2659409901&idx=1&sn=fa89655562b685ed6468c3723957abef",
+      "read_num": 100001
+    },
+    {
+      "title": "顺顺利利！下一站，清华！",
+      "url": "http://mp.weixin.qq.com/s?__biz=MzA4OTIyMzgxMw==&mid=2659409825&idx=1&sn=1443de1f5647be32aa8213bb3e2d98b7",
+      "read_num": 100001
+    },
+    {
+      "title": "是什么，让3.9万清华人勇敢分享？",
+      "url": "http://mp.weixin.qq.com/s?__biz=MzA4OTIyMzgxMw==&mid=2659410488&idx=1&sn=a9b5ec2a8b963a9dc13f29f289ad7b94",
+      "read_num": 83937
+    },
+    {
+      "title": "李路明校长致2026年高考考生的邀请信",
+      "url": "http://mp.weixin.qq.com/s?__biz=MzA4OTIyMzgxMw==&mid=2659410150&idx=1&sn=6987ebb08dc884049cd02c620849b71a",
+      "read_num": 79980
+    },
+    {
+      "title": "在清华姚班做科研是怎样一种体验？",
+      "url": "http://mp.weixin.qq.com/s?__biz=MzA4OTIyMzgxMw==&mid=2659409827&idx=1&sn=187b06a08cfff7030340b593f8963399",
+      "read_num": 76272
+    },
+    {
+      "title": "到底谁在操控你的睡眠？清华团队新发现→",
+      "url": "http://mp.weixin.qq.com/s?__biz=MzA4OTIyMzgxMw==&mid=2659410489&idx=1&sn=f08e372fdfdb865348e359888b5cb7e7",
+      "read_num": 44575
+    },
+    {
+      "title": "清华等你，今秋赴约！",
+      "url": "http://mp.weixin.qq.com/s?__biz=MzA4OTIyMzgxMw==&mid=2659410666&idx=1&sn=f3c05e4c1f400854f900c0d3ba362d5f",
+      "read_num": 27461
+    },
+    {
+      "title": "随我来，带你体验不一样的清华书院！",
+      "url": "http://mp.weixin.qq.com/s?__biz=MzA4OTIyMzgxMw==&mid=2659410140&idx=1&sn=b4b409e54013e22a9e11591f330f676a",
+      "read_num": 17839
+    },
+    {
+      "title": "开展五个专项行动，清华这样办实事、解难题！",
+      "url": "http://mp.weixin.qq.com/s?__biz=MzA4OTIyMzgxMw==&mid=2659409775&idx=1&sn=6d5f8fd7fe2e7f2ecd26160a009631bd",
+      "read_num": 14989
+    }
+  ]
+}

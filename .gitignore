@@ -1,0 +1,41 @@
+# ── Secrets (NEVER commit) ───────────────────────────────
+.env
+.env.*
+config/agent_config.yaml
+agent_config.yaml
+# Private WeChat article fetcher (scraping technique — do not publish)
+common/wechat_fetch.py
+uni-content-engine-demo.html
+
+# ── Python ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# ── Virtual environments ─────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── Tooling caches ───────────────────────────────────────
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ── IDE / OS ─────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ── Local data / output (keep samples in data/samples/) ──
+data/output/
+*.log
+/多智能体踩坑与经验总结.md
+/CLAUDE.md
+/plan.md

@@ -1,0 +1,58 @@
+# agent_config.yaml.example — Band platform identities for the 9 agents.
+#
+# WHAT THIS IS: each agent you register on https://app.band.ai gives you three
+# values — agent_id, api_key, and handle. Paste them here, one block per agent,
+# then save this file as `agent_config.yaml` (no `.example`) in the project root.
+#
+# IMPORTANT:
+#   * `agent_config.yaml` is gitignored — it holds real secrets, never commit it.
+#   * `api_key` here authenticates the agent TO THE BAND PLATFORM. It is NOT your
+#     OpenAI key. The OpenAI key stays in `.env` (OPENAI_API_KEY).
+#   * config keys use underscores (topic_strategy); handles use hyphens
+#     (@your-org/topic-strategy). Keep both exactly as the platform shows them.
+#   * All 9 keys below must be present (the orchestrator reads every one).
+
+scraper:
+  agent_id: "REPLACE_WITH_AGENT_ID"
+  api_key: "REPLACE_WITH_BAND_API_KEY"
+  handle: "@your-org/scraper"
+
+analysis:
+  agent_id: "REPLACE_WITH_AGENT_ID"
+  api_key: "REPLACE_WITH_BAND_API_KEY"
+  handle: "@your-org/analysis"
+
+topic_strategy:
+  agent_id: "REPLACE_WITH_AGENT_ID"
+  api_key: "REPLACE_WITH_BAND_API_KEY"
+  handle: "@your-org/topic-strategy"
+
+editorial:
+  agent_id: "REPLACE_WITH_AGENT_ID"
+  api_key: "REPLACE_WITH_BAND_API_KEY"
+  handle: "@your-org/editorial"
+
+drafting:
+  agent_id: "REPLACE_WITH_AGENT_ID"
+  api_key: "REPLACE_WITH_BAND_API_KEY"
+  handle: "@your-org/drafting"
+
+brand_review:
+  agent_id: "REPLACE_WITH_AGENT_ID"
+  api_key: "REPLACE_WITH_BAND_API_KEY"
+  handle: "@your-org/brand-review"
+
+compliance_review:
+  agent_id: "REPLACE_WITH_AGENT_ID"
+  api_key: "REPLACE_WITH_BAND_API_KEY"
+  handle: "@your-org/compliance-review"
+
+final_editor:
+  agent_id: "REPLACE_WITH_AGENT_ID"
+  api_key: "REPLACE_WITH_BAND_API_KEY"
+  handle: "@your-org/final-editor"
+
+orchestrator:
+  agent_id: "REPLACE_WITH_AGENT_ID"
+  api_key: "REPLACE_WITH_BAND_API_KEY"
+  handle: "@your-org/orchestrator"

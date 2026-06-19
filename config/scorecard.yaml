@@ -1,0 +1,69 @@
+# Scorecard — used by the Editorial Decision agent to score each candidate topic.
+#
+# Scoring is THREE-TIER only: 5 (strong) / 3 (partial) / 1 (weak).
+# Fewer score values = more consistent scoring = more stable routing.
+#
+# Business owners may edit: name, weight, core_question, criteria.
+# Keep the English `id` stable (code refers to it). Keep weights summing to 1.0.
+
+scoring_levels: [5, 3, 1]
+
+dimensions:
+  - id: benchmark_validation
+    name: 对标验证度
+    weight: 0.30
+    core_question: 对标高校发过类似选题吗？互动好不好？
+    criteria:
+      "5": 对标高校发过类似选题，且互动明显偏高（相对样本）
+      "3": 发过，互动中等
+      "1": 没发过，或互动明显偏低 / 无从判断
+
+  - id: calendar_node
+    name: 节点匹配度
+    weight: 0.25
+    core_question: 是否命中当前或即将到来的传播节点？
+    criteria:
+      "5": 精准命中节点刚需（如高考、毕业季当口）
+      "3": 与节点相关但不紧迫
+      "1": 与任何节点无关
+
+  - id: trend_fit
+    name: 热点契合度
+    weight: 0.20
+    core_question: 能否蹭上当下社媒热榜/搜索词？
+    criteria:
+      "5": 与当前热榜/搜索词直接相关
+      "3": 与近期话题间接相关
+      "1": 与热点无关
+
+  - id: own_advantage
+    name: 自身优势度
+    weight: 0.15
+    core_question: 是否用到本校（本机构）独特优势？
+    criteria:
+      "5": 高度依赖本校独有优势，别人难复制
+      "3": 用到一些自身资源，但不独特
+      "1": 与自身优势无关
+
+  - id: feasibility
+    name: 内容可行性
+    weight: 0.10
+    core_question: 制作成本与素材可得性如何？
+    criteria:
+      "5": 素材现成 + 低审批成本
+      "3": 需要一定采编或审批
+      "1": 素材难得 / 审批成本高
+
+# Risk / compliance is intentionally NOT part of this scorecard.
+# It is handled downstream by the dedicated Compliance Review agent (on the draft).
+#
+# Data note (based on the sample JSON — 北京大学_data.json):
+# - Video posts DO carry engagement: like_count / fav_count / forward_count / comment_count.
+# - Article (公众号) posts do NOT carry read/like counts; use comment signals as the proxy
+#   (number of comments + per-comment like_num).
+# - Both carry timestamps (create_time / post_time), so calendar_node can use post dates.
+# - Score benchmark_validation RELATIVE to the sample (clearly above/below the typical level),
+#   not by an absolute number, so it still works when real data at a different scale arrives.
+# - trend_fit uses hot topics from interfaces/hot_topic_provider.py (computed by algorithm,
+#   not hand-filled). The MVP provider returns a seeded list (hot_topic_seed in settings.yaml);
+#   post-MVP it swaps to a live WebSearch / search-trend API behind the same interface.
