@@ -82,22 +82,6 @@ The virtualenv and deps are already installed. Secrets live in (gitignored):
 
 Run Python via the venv interpreter: `.venv\Scripts\python.exe`.
 
-## Run it — offline (recommended first)
-
-Runs the full 8-agent flow + both loops + human approval on the sample data, **without Band**.
-
-```powershell
-# auto-approve the recommended topic (non-interactive, good for a quick demo):
-.venv\Scripts\python.exe main.py --auto
-
-# interactive human approval (you type `approve: topic_2` or `reject: <reason>`):
-.venv\Scripts\python.exe main.py
-```
-
-You will see one `[router] from -> to (reason)` line per transition (a full audit trail),
-then the final Chinese package (title / summary / body / cover suggestion / push time /
-open questions). A verified run triggers **Loop B** and the loop **guard** before finishing.
-
 ## Run it — Web UI (the through-Band product prototype)
 
 `band_through_final.py` is the main Web UI: the full product prototype that runs the
